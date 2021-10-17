@@ -1,0 +1,15 @@
+{% extends 'base_reg.html' %}
+
+{% block content %}
+  <h2>Welcome to the Property <span class="icon-emo-happy"></span></h2>
+  <p class="lead">
+    If you already have an account, go ahead and <a href="{% url 'login' %}">log in</a>. If you are new to Django Schools, get started
+    by creating a <a href="{% url 'buyer_signup' %}">Buyer Signup</a> or a <a href="{% url 'owner_signup' %}">Owner Signup</a>.
+  </p>
+  <hr>
+  
+  <p>
+   
+  </p>
+  
+{% endblock %}
