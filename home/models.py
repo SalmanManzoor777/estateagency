@@ -46,3 +46,10 @@ class Listing(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Document(models.Model):
+    title = models.CharField(max_length=255, blank=True)
+    description = models.CharField(max_length=255, blank=True)
+    document = models.FileField(upload_to='documents/user_directory')
+    uploaded_at = models.DateTimeField(auto_now_add=True)

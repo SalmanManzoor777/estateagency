@@ -7,8 +7,8 @@ from dashboard.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('app.urls')),
-    path('home/', include('home.urls')),
+    path('app/', include('app.urls')),
+    path('', include('home.urls')),
     path('dashboard/', include('dashboard.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
 #    path('accounts/login/', views.LoginView.as_view(), name='login'),

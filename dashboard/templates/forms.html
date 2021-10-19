@@ -1,5 +1,5 @@
 {% extends "layouts/base.html" %}
-
+{% load static %}
 {% block title %} UI Forms {% endblock %} 
 
 <!-- Specific Page CSS goes HERE  -->
@@ -21,13 +21,13 @@
 						<i class="flaticon-right-arrow"></i>
 					</li>
 					<li class="nav-item">
-						<a href="#">Forms</a>
+						<a href="#">File Uploads</a>
 					</li>
 					<li class="separator">
 						<i class="flaticon-right-arrow"></i>
 					</li>
 					<li class="nav-item">
-						<a href="#">Basic Form</a>
+						<a href="#">Upload</a>
 					</li>
 				</ul>
 			</div>
@@ -37,87 +37,35 @@
 						<div class="card-header">
 							<div class="card-title">Form Elements</div>
 						</div>
+
 						<div class="card-body">
 							<div class="row">
 								<div class="col-md-6 col-lg-4">
-									<div class="form-group">
-										<label for="email2">Email Address</label>
-										<input type="email" class="form-control" id="email2" placeholder="Enter Email">
-										<small id="emailHelp2" class="form-text text-muted">We'll never share your email with anyone else.</small>
-									</div>
-
-									<div class="form-group">
-										<label for="password">Password</label>
-										<input type="password" class="form-control" id="password" placeholder="Password">
-									</div>
-
-									<div class="form-group form-inline">
-										<label for="inlineinput" class="col-md-3 col-form-label">Inline Input</label>
-										<div class="col-md-9 p-0">
-											<input type="text" class="form-control input-full" id="inlineinput" placeholder="Enter Input">
-										</div>
-									</div>
-
-									<div class="form-group has-success">
-										<label for="successInput">Success Input</label>
-										<input type="text" id="successInput" value="Success" class="form-control">
-									</div>
-									<div class="form-group has-error has-feedback">
-										<label for="errorInput">Error Input</label>
-										<input type="text" id="errorInput" value="Error" class="form-control">
-										<small id="emailHelp" class="form-text text-muted">Please provide a valid informations.</small>
-									</div>
-									<div class="form-group">
-										<label for="disableinput">Disable Input</label>
-										<input type="text" class="form-control" id="disableinput" placeholder="Enter Input" disabled>
-									</div>
-									<div class="form-check">
-										<label>Gender</label><br/>
-										<label class="form-radio-label">
-											<input class="form-radio-input" type="radio" name="optionsRadios" value=""  checked="">
-											<span class="form-radio-sign">Male</span>
-										</label>
-										<label class="form-radio-label ml-3">
-											<input class="form-radio-input" type="radio" name="optionsRadios" value="">
-											<span class="form-radio-sign">Female</span>
-										</label>
-									</div>
-									<div class="form-group">
-										<label class="control-label">
-											Static
-										</label> 
-										<p class="form-control-static">hello@example.com</p> 
-									</div>
-									<div class="form-group">
-										<label for="exampleFormControlSelect1">Example select</label>
-										<select class="form-control" id="exampleFormControlSelect1">
-											<option>1</option>
-											<option>2</option>
-											<option>3</option>
-											<option>4</option>
-											<option>5</option>
-										</select>
-									</div>
-									<div class="form-group">
-										<label for="exampleFormControlSelect2">Example multiple select</label>
-										<select multiple class="form-control" id="exampleFormControlSelect2">
-											<option>1</option>
-											<option>2</option>
-											<option>3</option>
-											<option>4</option>
-											<option>5</option>
-										</select>
-									</div>
 
 									<div class="form-group">
 										<label for="exampleFormControlFile1">Example file input</label>
 
-										<input type="file" class="form-control-file" id="exampleFormControlFile1">
-											<form method="post" enctype="multipart/form-data">
+										<!-- <input type="file" class="form-control-file" id="exampleFormControlFile1"> -->
+
+											<form id="myForm" method="post" enctype="multipart/form-data">
 											    {% csrf_token %}
-											    <input type="text" required autocomplete="off" />
-											    {{ form.as_p }}
-											    <button type="submit">Upload</button>
+													
+													<label for="inputFloatingLabel" class="placeholder">Title</label>
+						
+
+												<input id="defaultInput"  class="form-control form-control" value="{{ form.title }}">
+
+												<label for="inputFloatingLabel" class="placeholder">Description</label>
+
+
+												<input type="text" id="defaultInput"  class="form-control form-control" value="{{ form.description }}">
+
+												
+												{{form.document}}
+
+											  <!-- {{ form.as_p }}  -->
+											    <button class="btn btn-success"  type="submit">Upload</button>
+
 											</form>
 									</div>
 									
@@ -129,42 +77,9 @@
 									</div>
 								</div>
 								<div class="col-md-6 col-lg-4">				
-									<div class="form-group">
-										<div class="input-group mb-3">
-											<div class="input-group-prepend">
-												<span class="input-group-text" id="basic-addon1">@</span>
-											</div>
-											<input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-										</div>
-									</div>
-									<div class="form-group">
-										<div class="input-group mb-3">
-											<input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
-											<div class="input-group-append">
-												<span class="input-group-text" id="basic-addon2">@example.com</span>
-											</div>
-										</div>
-									</div>
-									<div class="form-group">
-										<label for="basic-url">Your vanity URL</label>
-										<div class="input-group mb-3">
-											<div class="input-group-prepend">
-												<span class="input-group-text" id="basic-addon3">https://example.com/users/</span>
-											</div>
-											<input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
-										</div>
-									</div>
-									<div class="form-group">
-										<div class="input-group mb-3">
-											<div class="input-group-prepend">
-												<span class="input-group-text">$</span>
-											</div>
-											<input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-											<div class="input-group-append">
-												<span class="input-group-text">.00</span>
-											</div>
-										</div>
-									</div>
+									
+									
+									
 									<div class="form-group">
 										<div class="input-group">
 											<div class="input-group-prepend">
@@ -173,14 +88,8 @@
 											<textarea class="form-control" aria-label="With textarea"></textarea>
 										</div>
 									</div>
-									<div class="form-group">
-										<div class="input-group">
-											<div class="input-group-prepend">
-												<button class="btn btn-default btn-border" type="button">Button</button>
-											</div>
-											<input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
-										</div>
-									</div>
+
+									
 									<div class="form-group">
 										<div class="input-group">
 											<input type="text" class="form-control" aria-label="Text input with dropdown button">
@@ -196,98 +105,11 @@
 											</div>
 										</div>
 									</div>
-									<div class="form-group">
-										<div class="input-icon">
-											<input type="text" class="form-control" placeholder="Search for...">
-											<span class="input-icon-addon">
-												<i class="fa fa-search"></i>
-											</span>
-										</div>
-									</div>
-									<div class="form-group">
-										<div class="input-icon">
-											<span class="input-icon-addon">
-												<i class="fa fa-user"></i>
-											</span>
-											<input type="text" class="form-control" placeholder="Username">
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="form-label">Image Check</label>
-										<div class="row">
-											<div class="col-6 col-sm-4">
-												<label class="imagecheck mb-4">
-													<input name="imagecheck" type="checkbox" value="1" class="imagecheck-input">
-													<figure class="imagecheck-figure">
-														<img src="/static/assets/img/examples/product1.jpg" alt="title" class="imagecheck-image">
-													</figure>
-												</label>
-											</div>
-											<div class="col-6 col-sm-4">
-												<label class="imagecheck mb-4">
-													<input name="imagecheck" type="checkbox" value="2" class="imagecheck-input" checked="">
-													<figure class="imagecheck-figure">
-														<img src="/static/assets/img/examples/product4.jpg" alt="title" class="imagecheck-image">
-													</figure>
-												</label>
-											</div>
-											<div class="col-6 col-sm-4">
-												<label class="imagecheck mb-4">
-													<input name="imagecheck" type="checkbox" value="3" class="imagecheck-input">
-													<figure class="imagecheck-figure">
-														<img src="/static/assets/img/examples/product3.jpg" alt="title" class="imagecheck-image">
-													</figure>
-												</label>
-											</div>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="form-label">Color Input</label>
-										<div class="row gutters-xs">
-											<div class="col-auto">
-												<label class="colorinput">
-													<input name="color" type="checkbox" value="dark" class="colorinput-input">
-													<span class="colorinput-color bg-dark"></span>
-												</label>
-											</div>
-											<div class="col-auto">
-												<label class="colorinput">
-													<input name="color" type="checkbox" value="primary" class="colorinput-input">
-													<span class="colorinput-color bg-primary"></span>
-												</label>
-											</div>
-											<div class="col-auto">
-												<label class="colorinput">
-													<input name="color" type="checkbox" value="secondary" class="colorinput-input">
-													<span class="colorinput-color bg-secondary"></span>
-												</label>
-											</div>
-											<div class="col-auto">
-												<label class="colorinput">
-													<input name="color" type="checkbox" value="info" class="colorinput-input">
-													<span class="colorinput-color bg-info"></span>
-												</label>
-											</div>
-											<div class="col-auto">
-												<label class="colorinput">
-													<input name="color" type="checkbox" value="success" class="colorinput-input">
-													<span class="colorinput-color bg-success"></span>
-												</label>
-											</div>
-											<div class="col-auto">
-												<label class="colorinput">
-													<input name="color" type="checkbox" value="danger" class="colorinput-input">
-													<span class="colorinput-color bg-danger"></span>
-												</label>
-											</div>
-											<div class="col-auto">
-												<label class="colorinput">
-													<input name="color" type="checkbox" value="warning" class="colorinput-input">
-													<span class="colorinput-color bg-warning"></span>
-												</label>
-											</div>
-										</div>
-									</div>
+
+									
+									
+									
+									
 									<div class="form-group">
 										<label class="form-label">Size</label>
 										<div class="selectgroup w-100">
@@ -309,48 +131,9 @@
 											</label>
 										</div>
 									</div>
-									<div class="form-group">
-										<label class="form-label">Icons input</label>
-										<div class="selectgroup w-100">
-											<label class="selectgroup-item">
-												<input type="radio" name="transportation" value="2" class="selectgroup-input">
-												<span class="selectgroup-button selectgroup-button-icon"><i class="icon-screen-smartphone"></i></span>
-											</label>
-											<label class="selectgroup-item">
-												<input type="radio" name="transportation" value="1" class="selectgroup-input" checked="">
-												<span class="selectgroup-button selectgroup-button-icon"><i class="icon-screen-tablet"></i></span>
-											</label>
-											<label class="selectgroup-item">
-												<input type="radio" name="transportation" value="6" class="selectgroup-input">
-												<span class="selectgroup-button selectgroup-button-icon"><i class="icon-screen-desktop"></i></span>
-											</label>
-											<label class="selectgroup-item">
-												<input type="radio" name="transportation" value="6" class="selectgroup-input">
-												<span class="selectgroup-button selectgroup-button-icon"><i class="fa fa-times"></i></span>
-											</label>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="form-label d-block">Icon input</label>
-										<div class="selectgroup selectgroup-secondary selectgroup-pills">
-											<label class="selectgroup-item">
-												<input type="radio" name="icon-input" value="1" class="selectgroup-input" checked="">
-												<span class="selectgroup-button selectgroup-button-icon"><i class="fa fa-sun"></i></span>
-											</label>
-											<label class="selectgroup-item">
-												<input type="radio" name="icon-input" value="2" class="selectgroup-input">
-												<span class="selectgroup-button selectgroup-button-icon"><i class="fa fa-moon"></i></span>
-											</label>
-											<label class="selectgroup-item">
-												<input type="radio" name="icon-input" value="3" class="selectgroup-input">
-												<span class="selectgroup-button selectgroup-button-icon"><i class="fa fa-tint"></i></span>
-											</label>
-											<label class="selectgroup-item">
-												<input type="radio" name="icon-input" value="4" class="selectgroup-input">
-												<span class="selectgroup-button selectgroup-button-icon"><i class="fa fa-cloud"></i></span>
-											</label>
-										</div>
-									</div>
+
+									
+									
 									<div class="form-group">
 										<label class="form-label">Your skills</label>
 										<div class="selectgroup selectgroup-pills">
@@ -385,42 +168,20 @@
 										</div>
 									</div>
 								</div>
+
 								<div class="col-md-6 col-lg-4">
-									<label class="mb-3"><b>Form Group Default</b></label>
-									<div class="form-group form-group-default">
-										<label>Input</label>
-										<input id="Name" type="text" class="form-control" placeholder="Fill Name">
-									</div>
-									<div class="form-group form-group-default">
-										<label>Select</label>
-										<select class="form-control" id="formGroupDefaultSelect">
-											<option>1</option>
-											<option>2</option>
-											<option>3</option>
-											<option>4</option>
-											<option>5</option>
-										</select>
-									</div>
+									
+									
 									<label class="mt-3 mb-3"><b>Form Floating Label</b></label>
 									<div class="form-group form-floating-label">
 										<input id="inputFloatingLabel" type="text" class="form-control input-border-bottom" required>
 										<label for="inputFloatingLabel" class="placeholder">Input</label>
 									</div>
-									<div class="form-group form-floating-label">
-										<select class="form-control input-border-bottom" id="selectFloatingLabel" required>
-											<option value="">&nbsp;</option>
-											<option>1</option>
-											<option>2</option>
-											<option>3</option>
-											<option>4</option>
-											<option>5</option>
-										</select>
-										<label for="selectFloatingLabel" class="placeholder">Select</label>
-									</div>
-									<div class="form-group form-floating-label">
-										<input id="inputFloatingLabel2" type="text" class="form-control input-solid" required>
-										<label for="inputFloatingLabel2" class="placeholder">Input</label>
-									</div>
+
+									
+
+									
+
 									<div class="form-group form-floating-label">
 										<select class="form-control input-solid" id="selectFloatingLabel2" required>
 											<option value="">&nbsp;</option>
@@ -433,18 +194,14 @@
 										<label for="selectFloatingLabel2" class="placeholder">Select</label>
 									</div>
 									
-									<div class="form-group">
-										<label for="largeInput">Large Input</label>
-										<input type="text" class="form-control form-control-lg" id="largeInput" placeholder="Large Input">
-									</div>
+									
 									<div class="form-group">
 										<label for="largeInput">Default Input</label>
 										<input type="text" class="form-control form-control" id="defaultInput" placeholder="Default Input">
+
+										<button class="btn btn-success" type="submit">Upload</button>
 									</div>
-									<div class="form-group">
-										<label for="smallInput">Small Input</label>
-										<input type="text" class="form-control form-control-sm" id="smallInput" placeholder="Small Input">
-									</div>
+									
 									<div class="form-group">
 										<label for="largeSelect">Large Select</label>
 										<select class="form-control form-control-lg" id="largeSelect">
@@ -455,45 +212,31 @@
 											<option>5</option>
 										</select>
 									</div>
-									<div class="form-group">
-										<label for="defaultSelect">Default Select</label>
-										<select class="form-control form-control" id="defaultSelect">
-											<option>1</option>
-											<option>2</option>
-											<option>3</option>
-											<option>4</option>
-											<option>5</option>
-										</select>
-									</div>
-									<div class="form-group">
-										<label for="smallSelect">Small Select</label>
-										<select class="form-control form-control-sm" id="smallSelect">
-											<option>1</option>
-											<option>2</option>
-											<option>3</option>
-											<option>4</option>
-											<option>5</option>
-										</select>
-									</div>
+									
+									
 								</div>
 							</div>
 						</div>
-						<div class="card-action">
+
+						
 							<button class="btn btn-success">Submit</button>
 							<button class="btn btn-danger">Cancel</button>
-						</div>
+						
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
+
+
 {% endblock content %}
+
 
 <!-- Specific Page JS goes HERE  -->
 {% block javascripts %}
 
 	<!-- Atlantis DEMO methods, don't include it in your project! -->
-	<script src="/static/assets/js/setting-demo2.js"></script>
+	
 
 {% endblock javascripts %}	
